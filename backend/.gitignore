@@ -1,0 +1,7 @@
+/.env
+/data/
+/tests/.tmp/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.log

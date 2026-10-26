@@ -1,0 +1,89 @@
+#level-packs {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1rem;
+}
+
+.level-pack {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0.3rem;
+	background-color: var(--input-background);
+	padding: 1rem;
+	border-radius: 1rem;
+	border: var(--button-border);
+}
+
+.level-pack .header {
+	display: flex;
+	flex-direction: row;
+}
+
+.level-pack .difficulty {
+	margin-left: auto;
+}
+
+html[lang='en'] .level-pack .author::before {
+	content: 'Author: ';
+}
+
+html[lang='de'] .level-pack .author::before {
+	content: 'Autor: ';
+}
+
+.level-pack .author {
+	font-style: italic;
+	text-align: end;
+	margin-top: -0.5rem;
+	font-size: 0.8em;
+}
+
+.level-pack .highscore-text {
+	margin-top: 0.5rem;
+}
+
+.levels-container {
+	--level-size: 3.3rem;
+
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(var(--level-size), 1fr));
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.levels-container .level {
+	aspect-ratio: 1 / 1;
+	background-color: aliceblue;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 1rem;
+	color: rgb(83, 83, 83);
+	font-family: var(--header-font);
+	font-weight: bold;
+	transition: 100ms;
+	font-size: 1.2em;
+	text-decoration: none;
+}
+
+.levels-container .level.completed:hover {
+	transform: scale(1.1);
+}
+
+.levels-container .level:not(.completed) {
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+
+.levels-container .level {
+	background-color: rgb(193, 255, 203);
+}
+
+.levels-container .level[data-difficulty='medium'] {
+	background-color: rgb(246, 255, 193);
+}
+
+.levels-container .level[data-difficulty='hard'] {
+	background-color: rgb(255, 193, 193);
+}

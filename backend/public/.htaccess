@@ -1,0 +1,12 @@
+Options -Indexes
+DirectoryIndex index.php
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "no-referrer"
+</IfModule>
+
+# Never serve dotfiles, database files, logs or backup sources.
+<FilesMatch "(^\.|\.(?:sqlite|sqlite-wal|sqlite-shm|log|env|bak|ini|sh)$)">
+    Require all denied
+</FilesMatch>

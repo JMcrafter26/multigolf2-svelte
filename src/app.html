@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+		<meta name="text-scale" content="scale" />
+		<meta
+			name="description"
+			content="Multigolf is a party minigolf game played across multiple phones."
+		/>
+		<meta name="theme-color" content="#21e77b" />
+		<link rel="manifest" href="/manifest.json" />
+		<link rel="icon" type="image/x-icon" href="/assets/logo/favicon.ico" />
+		<link rel="apple-touch-icon" href="/assets/logo/logo192.png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://fonts.googleapis.com/css?family=Quicksand"
+		/>
+		<script>
+			// Apply saved preferences before first paint so languages and themes
+			// never flash the wrong values after hydration.
+			(function () {
+				try {
+					var lang =
+						localStorage.getItem('multigolf-lang') ||
+						localStorage.getItem('lang') ||
+						((navigator.language || 'en').toLowerCase().indexOf('de') === 0 ? 'de' : 'en');
+					document.documentElement.lang = lang === 'de' ? 'de' : 'en';
+				} catch (error) {
+					document.documentElement.lang = 'en';
+				}
+			})();
+		</script>
+		%sveltekit.head%
+	</head>
+	<body class="sticky-header">
+		<script>
+			(function () {
+				try {
+					var theme =
+						localStorage.getItem('multigolf-theme') || localStorage.getItem('style') || 'light';
+					document.body.dataset.style = theme === 'dark' ? 'dark' : 'light';
+					document.documentElement.style.colorScheme = theme === 'dark' ? 'dark' : 'light';
+					var setHeight = function () {
+						var height =
+							window.screen && window.screen.availHeight
+								? window.screen.availHeight
+								: window.innerHeight;
+						document.body.style.setProperty('--full-height', height - 1 + 'px');
+					};
+					setHeight();
+					window.addEventListener('resize', setHeight);
+				} catch (error) {
+					/* preferences are optional */
+				}
+			})();
+		</script>
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
